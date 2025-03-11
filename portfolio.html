@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Portfolio - Tanay Parte</title>
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700&family=Upgrade:wght@400;500;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+        <!-- Tailwind CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+        <!-- Font Awesome for Icons -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+        <style>
+            /* Custom Fonts */
+            .font-league-spartan {
+                font-family: 'League Spartan', sans-serif;
+            }
+            .font-upgrade {
+                font-family: 'Upgrade', sans-serif;
+            }
+            .font-poppins {
+                font-family: 'Poppins', sans-serif;
+            }
+
+            /* Fade-in animation */
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            .fade-in {
+                animation: fadeIn 1s ease-out;
+            }
+
+            /* Scale effect on hover */
+            .hover-scale:hover {
+                transform: scale(1.05);
+                transition: transform 0.3s ease-in-out;
+            }
+
+            /* Hero text fade-in */
+            @keyframes fadeSlide {
+                from {
+                    opacity: 0;
+                    transform: translateY(-30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            .hero-text {
+                animation: fadeSlide 1.2s ease-in-out;
+            }
+
+            /* Scroll animation for sections */
+            .hidden-section {
+                opacity: 0;
+                transform: translateY(30px);
+                transition: opacity 1s, transform 1s;
+            }
+            .visible-section {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            /* Additional Animations */
+            @keyframes bounce {
+                0%, 100% {
+                    transform: translateY(0);
+                }
+                50% {
+                    transform: translateY(-10px);
+                }
+            }
+            .bounce-animation {
+                animation: bounce 1.5s infinite;
+            }
+
+            @keyframes rotate {
+                from {
+                    transform: rotate(0deg);
+                }
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+            .rotate-animation {
+                animation: rotate 4s linear infinite;
+            }
+
+            @keyframes pulse {
+                0%, 100% {
+                    transform: scale(1);
+                }
+                50% {
+                    transform: scale(1.1);
+                }
+            }
+            .pulse-animation {
+                animation: pulse 2s infinite;
+            }
+
+            @keyframes slideInLeft {
+                from {
+                    transform: translateX(-100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            .slide-in-left {
+                animation: slideInLeft 1s ease-out;
+            }
+
+            @keyframes slideInRight {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            .slide-in-right {
+                animation: slideInRight 1s ease-out;
+            }
+
+            /* Slide-down animation for buttons */
+            @keyframes slideDown {
+                from {
+                    transform: translateY(-20px);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+            }
+            .slide-down {
+                animation: slideDown 1.5s ease-out; /* Slower animation */
+            }
+
+            /* Progress Bar Animation */
+            @keyframes progress {
+                from {
+                    width: 0;
+                }
+                to {
+                    width: var(--progress-width);
+                }
+            }
+            .progress-bar {
+                animation: progress 1.5s ease-out forwards;
+            }
+
+            /* Dark Theme Styles */
+            .dark {
+                background-color: #1a1a1a;
+                color: #e5e7eb;
+            }
+            .dark .bg-white {
+                background-color: #2d2d2d;
+                color: #e5e7eb;
+            }
+            .dark .bg-gray-100 {
+                background-color: #3d3d3d;
+                color: #e5e7eb;
+            }
+            .dark .bg-gray-200 {
+                background-color: #4d4d4d;
+                color: #e5e7eb;
+            }
+            .dark .text-gray-800 {
+                color: #e5e7eb;
+            }
+            .dark .text-gray-700 {
+                color: #d1d5db;
+            }
+            .dark .text-gray-600 {
+                color: #9ca3af;
+            }
+            .dark .text-gray-500 {
+                color: #6b7280;
+            }
+            .dark .text-gray-400 {
+                color: #9ca3af;
+            }
+            .dark .bg-green-500 {
+                background-color: #24C9FD; /* Updated to #24C9FD */
+            }
+            .dark .text-green-500 {
+                color: #24C9FD; /* Updated to #24C9FD */
+            }
+            .dark .border-gray-300 {
+                border-color: #4d4d4d;
+            }
+            .dark .shadow-lg {
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+            }
+
+            /* Gesture Designs */
+            body::before {
+                content: '';
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: radial-gradient(circle at 10% 20%, rgba(36, 201, 253, 0.1), transparent); /* Updated to #24C9FD */
+                z-index: -1;
+            }
+
+            body::after {
+                content: '';
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: radial-gradient(circle at 90% 80%, rgba(36, 201, 253, 0.1), transparent); /* Updated to #24C9FD */
+                z-index: -1;
+            }
+
+            .dark body::before {
+                background: radial-gradient(circle at 10% 20%, rgba(36, 201, 253, 0.05), transparent); /* Updated to #24C9FD */
+            }
+
+            .dark body::after {
+                background: radial-gradient(circle at 90% 80%, rgba(36, 201, 253, 0.05), transparent); /* Updated to #24C9FD */
+            }
+        </style>
+    </head>
+
+<body class="dark bg-gray-800 text-gray-100 font-poppins">
+    <!-- Navigation -->
+    <nav class="bg-gray-900 shadow-lg">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between">
+                <div class="flex space-x-7">
+                    <a href="#" class="flex items-center py-4 px-2">
+                        <!-- Drag-and-Drop Image for Profile Picture -->
+                        <div id="profilePicContainer" class="rounded-full h-10 w-10 mr-2 border-2 border-gray-700 overflow-hidden">
+                            <img id="profilePic" src="https://via.placeholder.com/150" alt="Profile Picture" class="w-full h-full object-cover" draggable="false">
+                        </div>
+                        <span class="font-league-spartan font-semibold text-gray-400 text-lg">Tanay Parte</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="#about" class="py-4 px-2 text-gray-400 font-semibold hover:text-[#24C9FD] transition slide-down">About</a>
+                    <a href="#skills" class="py-4 px-2 text-gray-400 font-semibold hover:text-[#24C9FD] transition slide-down">Skills</a>
+                    <a href="#certifications" class="py-4 px-2 text-gray-400 font-semibold hover:text-[#24C9FD] transition slide-down">Certifications</a>
+                    <a href="#projects" class="py-4 px-2 text-gray-400 font-semibold hover:text-[#24C9FD] transition slide-down">Projects</a>
+                    <a href="#achievements" class="py-4 px-2 text-gray-400 font-semibold hover:text-[#24C9FD] transition slide-down">Achievements</a>
+                    <a href="#beyond" class="py-4 px-2 text-gray-400 font-semibold hover:text-[#24C9FD] transition slide-down">Beyond the Code</a>
+                    <a href="#contact" class="py-4 px-2 text-gray-400 font-semibold hover:text-[#24C9FD] transition slide-down">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with fade-in animation -->
+    <section class="bg-[#24C9FD] text-white py-20">
+        <div class="container mx-auto px-6 text-center hero-text">
+            <h1 class="text-4xl font-bold mb-2 font-upgrade">Tanay Tukaram Parte</h1>
+            <p class="text-xl mb-8 font-league-spartan">Computer Engineering Student | 1 Year Experience</p>
+            <a href="#contact" class="bg-white text-[#24C9FD] py-2 px-4 rounded-full font-semibold hover:bg-gray-100 transition duration-300 hover-scale bounce-animation slide-down">
+                Get in Touch
+            </a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-8 slide-in-left font-upgrade">About Me</h2>
+            <div class="flex flex-col md:flex-row items-center space-y-8 md:space-y-0 md:space-x-12">
+                <!-- Drag-and-Drop Image for About Section -->
+                <div id="aboutImageContainer" class="md:w-1/3 flex justify-center">
+                    <img id="aboutImage" src="https://via.placeholder.com/400" alt="Tanay Parte" class="rounded-lg shadow-lg w-64 h-64 md:w-80 md:h-80 object-cover hover-scale" draggable="false">
+                </div>
+                <!-- Text -->
+                <div class="md:w-2/3 slide-in-right">
+                    <p class="text-gray-300 leading-relaxed text-lg">
+                        As a Computer Engineering student with one year of experience in software development and system design, I have cultivated a strong foundation in both hardware and software domains. My passion lies in IoT-based projects, where I integrate electronics with smart systems to create innovative solutions. I also have a keen interest in front-end development, leveraging my skills in CSS to craft visually appealing and responsive user interfaces. Beyond coding, I enjoy model making, which allows me to bring concepts to life through detailed prototypes and design explorations. Constantly learning and evolving, I strive to bridge the gap between hardware and software, creating seamless and efficient technological solutions.
+                    </p>
+                    <div class="mt-6">
+                        <h3 class="text-xl font-semibold font-league-spartan">Skills</h3>
+                        <ul class="list-disc list-inside text-gray-300">
+                            <li>Web Development (HTML, CSS, JavaScript, Node.js)</li>
+                            <li>Graphic Designing (Placit, Adobe, Kettl, Gimp)</li>
+                            <li>IoT (Raspberry Pi, Arduino)</li>
+                            <li>Database Management (MySQL, MongoDB)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="bg-gray-900 py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-8 slide-in-left font-upgrade">Skills</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Skill 1 -->
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover-scale">
+                    <div class="text-center">
+                        <i class="fas fa-code text-4xl text-[#24C9FD] mb-4"></i>
+                        <h3 class="text-2xl font-semibold font-league-spartan">Graphic Designing</h3>
+                        <div class="mt-4">
+                            <div class="w-full bg-gray-700 rounded-full h-2.5">
+                                <div class="bg-[#24C9FD] h-2.5 rounded-full progress-bar" style="--progress-width: 90%;"></div>
+                            </div>
+                            <p class="text-gray-300 mt-2">90%</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Skill 2 -->
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover-scale">
+                    <div class="text-center">
+                        <i class="fas fa-brain text-4xl text-[#24C9FD] mb-4"></i>
+                        <h3 class="text-2xl font-semibold font-league-spartan">Machine Learning</h3>
+                        <div class="mt-4">
+                            <div class="w-full bg-gray-700 rounded-full h-2.5">
+                                <div class="bg-[#24C9FD] h-2.5 rounded-full progress-bar" style="--progress-width: 80%;"></div>
+                            </div>
+                            <p class="text-gray-300 mt-2">80%</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Skill 3 -->
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover-scale">
+                    <div class="text-center">
+                        <i class="fas fa-microchip text-4xl text-[#24C9FD] mb-4"></i>
+                        <h3 class="text-2xl font-semibold font-league-spartan">IoT</h3>
+                        <div class="mt-4">
+                            <div class="w-full bg-gray-700 rounded-full h-2.5">
+                                <div class="bg-[#24C9FD] h-2.5 rounded-full progress-bar" style="--progress-width: 85%;"></div>
+                            </div>
+                            <p class="text-gray-300 mt-2">85%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="bg-gray-800 py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-8 slide-in-left font-upgrade">Certifications</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Certification 1 -->
+                <div class="bg-gray-900 p-6 rounded-lg shadow-lg hover-scale">
+                    <div class="text-center">
+                        <i class="fas fa-certificate text-4xl text-[#24C9FD] mb-4"></i>
+                        <h3 class="text-2xl font-semibold font-league-spartan">Graphical Designing</h3>
+                        <p class="mt-4 text-gray-300">
+                            Certified by XYZ Platform for completing the Graphic Designing course.
+                        </p>
+                        <!-- Drag-and-Drop Image for Certificate -->
+                        <div id="certificate1Container" class="mt-4 border-2 border-dashed border-gray-700 p-4 rounded-lg">
+                            <img id="certificate1" src="https://via.placeholder.com/300" alt="Certificate 1" class="w-full h-auto object-cover rounded-lg">
+                        </div>
+                    </div>
+                </div>
+                <!-- Certification 2 -->
+                <div class="bg-gray-900 p-6 rounded-lg shadow-lg hover-scale">
+                    <div class="text-center">
+                        <i class="fas fa-certificate text-4xl text-[#24C9FD] mb-4"></i>
+                        <h3 class="text-2xl font-semibold font-league-spartan">Machine Learning</h3>
+                        <p class="mt-4 text-gray-300">
+                            Certified by ABC Platform for completing the Machine Learning course.
+                        </p>
+                        <!-- Drag-and-Drop Image for Certificate -->
+                        <div id="certificate2Container" class="mt-4 border-2 border-dashed border-gray-700 p-4 rounded-lg">
+                            <img id="certificate2" src="https://via.placeholder.com/300" alt="Certificate 2" class="w-full h-auto object-cover rounded-lg">
+                        </div>
+                    </div>
+                </div>
+                <!-- Certification 3 -->
+                <div class="bg-gray-900 p-6 rounded-lg shadow-lg hover-scale">
+                    <div class="text-center">
+                        <i class="fas fa-certificate text-4xl text-[#24C9FD] mb-4"></i>
+                        <h3 class="text-2xl font-semibold font-league-spartan">IoT Development</h3>
+                        <p class="mt-4 text-gray-300">
+                            Certified by DEF Platform for completing the IoT Development course.
+                        </p>
+                        <!-- Drag-and-Drop Image for Certificate -->
+                        <div id="certificate3Container" class="mt-4 border-2 border-dashed border-gray-700 p-4 rounded-lg">
+                            <img id="certificate3" src="https://via.placeholder.com/300" alt="Certificate 3" class="w-full h-auto object-cover rounded-lg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="bg-gray-900 py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-8 slide-in-left font-upgrade">Experience</h2>
+            <div class="space-y-8">
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover-scale">
+                    <h3 class="text-2xl font-semibold font-league-spartan">Software Developer Intern</h3>
+                    <p class="text-gray-400">XYZ Company | Jan 2023 - Present</p>
+                    <p class="mt-4 text-gray-300">
+                        Developed and maintained web applications using React and Node.js. Collaborated with cross-functional teams to deliver high-quality software solutions.
+                    </p>
+                </div>
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover-scale">
+                    <h3 class="text-2xl font-semibold font-league-spartan">Freelance Web Developer</h3>
+                    <p class="text-gray-400">Self-Employed | Jun 2022 - Dec 2022</p>
+                    <p class="mt-4 text-gray-300">
+                        Designed and developed websites for small businesses, ensuring responsive design and optimal performance.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="bg-gray-800 py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-8 slide-in-left font-upgrade">Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-900 p-6 rounded-lg shadow-lg hover-scale">
+                    <h3 class="text-2xl font-semibold font-league-spartan">E-Commerce Website</h3>
+                    <p class="mt-4 text-gray-300">
+                        Developed a full-stack e-commerce website using MERN stack with features like user authentication, product search, and payment integration.
+                    </p>
+                </div>
+                <div class="bg-gray-900 p-6 rounded-lg shadow-lg hover-scale">
+                    <h3 class="text-2xl font-semibold font-league-spartan">IoT-Based Smart Home</h3>
+                    <p class="mt-4 text-gray-300">
+                        Designed and implemented a smart home system using Raspberry Pi and IoT technologies to control home appliances remotely.
+                    </p>
+                </div>
+                <div class="bg-gray-900 p-6 rounded-lg shadow-lg hover-scale">
+                    <h3 class="text-2xl font-semibold font-league-spartan">Graphic Designing</h3>
+                    <p class="mt-4 text-gray-300">
+                        Creative and detail-oriented graphic designer with a strong eye for aesthetics and visual storytelling. Skilled in branding, digital illustration, and UI/UX design, I bring ideas to life through compelling visuals that enhance user experiences.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements" class="bg-gray-900 py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-8 slide-in-left font-upgrade">Achievements</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Achievement 1 -->
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover-scale">
+                    <div class="text-center">
+                        <i class="fas fa-trophy text-4xl text-[#24C9FD] mb-4"></i>
+                        <h3 class="text-2xl font-semibold font-league-spartan">Hackathon Winner</h3>
+                        <p class="mt-4 text-gray-300">
+                            Won first place in a national-level hackathon for developing an innovative IoT-based solution.
+                        </p>
+                    </div>
+                </div>
+                <!-- Achievement 2 -->
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover-scale">
+                    <div class="text-center">
+                        <i class="fas fa-certificate text-4xl text-[#24C9FD] mb-4"></i>
+                        <h3 class="text-2xl font-semibold font-league-spartan">Certified Developer</h3>
+                        <p class="mt-4 text-gray-300">
+                            Earned certifications in Full-Stack Development and Machine Learning from recognized platforms.
+                        </p>
+                    </div>
+                </div>
+                <!-- Achievement 3 -->
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover-scale">
+                    <div class="text-center">
+                        <i class="fas fa-lightbulb text-4xl text-[#24C9FD] mb-4"></i>
+                        <h3 class="text-2xl font-semibold font-league-spartan">Innovation Award</h3>
+                        <p class="mt-4 text-gray-300">
+                            Received an award for developing a smart home automation system using Raspberry Pi.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Beyond the Code Section -->
+    <section id="beyond" class="bg-gray-800 py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-8 slide-in-left font-upgrade">Beyond the Code</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Hobbies and Interests -->
+                <div class="bg-gray-900 p-6 rounded-lg shadow-lg text-gray-300 hover-scale">
+                    <h3 class="text-2xl font-semibold mb-4 font-league-spartan">Hobbies</h3>
+                    <ul class="list-disc list-inside">
+                        <li>Football Player</li>
+                        <li>Sketch Artist</li>
+                        <li>Solo Travelling</li>
+                        <li>Grafitti Artist</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-900 p-6 rounded-lg shadow-lg text-gray-300 hover-scale">
+                    <h3 class="text-2xl font-semibold mb-4 font-league-spartan">Interests</h3>
+                    <ul class="list-disc list-inside">
+                        <li>Artificial Intelligence</li>
+                        <li>Graphic Designing</li>
+                        <li>Animation and VFX</li>
+                        <li>UI/UX Design</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-900 p-6 rounded-lg shadow-lg text-gray-300 hover-scale">
+                    <h3 class="text-2xl font-semibold mb-4 font-league-spartan">Other Passions</h3>
+                    <ul class="list-disc list-inside">
+                        <li>Graphical Designing</li>
+                        <li>Participating in Hackathons</li>
+                        <li>Music Producing</li>
+                        <li>Automobile Designing</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="bg-[#24C9FD] text-white py-20">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold mb-8 slide-in-left font-upgrade">Contact Me</h2>
+            <p class="mb-8">Feel free to reach out to me for any inquiries or collaborations.</p>
+            <form id="contactForm" class="max-w-lg mx-auto">
+                <div class="mb-4">
+                    <input type="text" id="name" placeholder="Your Name" class="w-full px-4 py-2 rounded-full text-gray-800">
+                </div>
+                <div class="mb-4">
+                    <input type="email" id="email" placeholder="Your Email" class="w-full px-4 py-2 rounded-full text-gray-800">
+                </div>
+                <div class="mb-4">
+                    <textarea id="message" placeholder="Your Message" class="w-full px-4 py-2 rounded-lg text-gray-800"></textarea>
+                </div>
+                <button type="submit" class="bg-white text-[#24C9FD] py-2 px-4 rounded-full font-semibold hover:bg-gray-100 transition duration-300 hover-scale pulse-animation slide-down">
+                    Send Message
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- About Section -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 font-league-spartan">About Me</h3>
+                    <p class="text-gray-400">
+                        A passionate Computer Engineering student with expertise in web development, machine learning, and IoT. Always eager to learn and apply new technologies to solve real-world problems.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 font-league-spartan">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="text-gray-400 hover:text-[#24C9FD] transition duration-300">About</a></li>
+                        <li><a href="#skills" class="text-gray-400 hover:text-[#24C9FD] transition duration-300">Skills</a></li>
+                        <li><a href="#certifications" class="text-gray-400 hover:text-[#24C9FD] transition duration-300">Certifications</a></li>
+                        <li><a href="#projects" class="text-gray-400 hover:text-[#24C9FD] transition duration-300">Projects</a></li>
+                        <li><a href="#achievements" class="text-gray-400 hover:text-[#24C9FD] transition duration-300">Achievements</a></li>
+                        <li><a href="#beyond" class="text-gray-400 hover:text-[#24C9FD] transition duration-300">Beyond the Code</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-[#24C9FD] transition duration-300">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Social Media Links -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 font-league-spartan">Connect With Me</h3>
+                    <div class="flex space-x-4">
+                        <a href="https://linkedin.com/in/tanayparte" target="_blank" class="text-gray-400 hover:text-[#24C9FD] transition duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                            </svg>
+                        </a>
+                        <a href="https://github.com/tanayparte" target="_blank" class="text-gray-400 hover:text-[#24C9FD] transition duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.652.242 2.873.118 3.176.766.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                        </a>
+                        <a href="mailto:tanayparte@example.com" class="text-gray-400 hover:text-[#24C9FD] transition duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                                <path d="M12 12.713l-11.985-9.713h23.97l-11.985 9.713zm0 2.574l-12-9.725v15.438h24v-15.438l-12 9.725z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyright Notice -->
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>© 2023 Tanay Parte. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Drag-and-Drop and Scroll Animations -->
+    <script>
+        // Function to handle drag-and-drop for images
+        function handleDragAndDrop(dropZoneId, imageId, storageKey) {
+            const dropZone = document.getElementById(dropZoneId);
+            const image = document.getElementById(imageId);
+
+            // Load saved image from localStorage
+            const savedImage = localStorage.getItem(storageKey);
+            if (savedImage) {
+                image.src = savedImage;
+            }
+
+            // Prevent default drag behaviors
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                dropZone.addEventListener(eventName, preventDefaults, false);
+            });
+
+            // Highlight drop zone when item is dragged over
+            ['dragenter', 'dragover'].forEach(eventName => {
+                dropZone.addEventListener(eventName, () => dropZone.classList.add('bg-gray-700'), false);
+            });
+
+            ['dragleave', 'drop'].forEach(eventName => {
+                dropZone.addEventListener(eventName, () => dropZone.classList.remove('bg-gray-700'), false);
+            });
+
+            // Handle dropped files
+            dropZone.addEventListener('drop', handleDrop, false);
+
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+
+            function handleDrop(e) {
+                const dt = e.dataTransfer;
+                const files = dt.files;
+
+                if (files.length > 0) {
+                    const file = files[0];
+                    if (file.type.startsWith('image/')) {
+                        const reader = new FileReader();
+                        reader.onload = function (event) {
+                            image.src = event.target.result;
+                            // Save the image to localStorage
+                            localStorage.setItem(storageKey, event.target.result);
+                        };
+                        reader.readAsDataURL(file);
+                    } else {
+                        alert('Please upload an image file.');
+                    }
+                }
+            }
+        }
+
+        // Enable drag-and-drop for profile picture and about section image
+        handleDragAndDrop('profilePicContainer', 'profilePic', 'profilePicImage');
+        handleDragAndDrop('aboutImageContainer', 'aboutImage', 'aboutImageImage');
+        handleDragAndDrop('certificate1Container', 'certificate1', 'certificate1Image');
+        handleDragAndDrop('certificate2Container', 'certificate2', 'certificate2Image');
+        handleDragAndDrop('certificate3Container', 'certificate3', 'certificate3Image');
+
+        // Scroll animation for sections
+        document.addEventListener("DOMContentLoaded", () => {
+            const sections = document.querySelectorAll(".hidden-section");
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible-section");
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            sections.forEach(section => observer.observe(section));
+        });
+    </script>
+</body>
+</html>
